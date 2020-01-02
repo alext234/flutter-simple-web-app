@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "build/web/**", "use": "@now/static" }
+   ],
+  "routes": [
+    { "src": "/(.*)", "dest": "build/web/$1" }
+  ]
+}
+

@@ -40,6 +40,44 @@ cd build/web
 python3 -m http.server 8000
 ```
 
+### Deploy
+
+Zeit (https://zeit.co/) `now` CLI is used for deployment. The CLI can be installed following the instruction at https://zeit.co/download. A simple configuration file `now.json` is used with the cli.
+
+* To deploy for testing
+```
+> now -A now.json
+```
+
+The output will look like this
+
+```
+> Deploying flutter-simple-web-app under <user-id>
+> Using project flutter-simple-web-app
+> Synced 1 file [2s]
+> https://flutter-simple-web-app-<some-random-id>.now.sh [9s]
+> Ready! Deployed to https://flutter-simple-web-app.<user-id>.now.sh 
+```
+* To deploy to production
+
+```
+> now -A now.json --prod
+```
+
+The output will look like this
+
+```
+> Deploying flutter-simple-web-app under <user-id>
+> Using project flutter-simple-web-app
+> https://flutter-simple-web-app-<some-random-id>.now.sh [3s]
+> Ready! Deployment complete [8s]
+- https://flutter-simple-web-app.now.sh
+- https://flutter-simple-web-app.<user-id>.now.sh [in clipboard]
+```
+
+
+A working production URL is deployed at https://flutter-simple-web-app.now.sh
+
 
 ## References
 
