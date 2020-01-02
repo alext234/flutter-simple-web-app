@@ -1,6 +1,9 @@
-## Simple web app FLutter project
+## Simple web app Flutter project
 
 This repo is a very simple web app with Flutter following the basic tutorial.
+
+A working production URL is deployed at https://flutter-simple-web-app.now.sh
+
 
 TODO: pipeline with github actions 
 TODO: debug instructions
@@ -74,9 +77,6 @@ The output will look like this
 - https://flutter-simple-web-app.now.sh
 - https://flutter-simple-web-app.<user-id>.now.sh [in clipboard]
 ```
-
-
-A working production URL is deployed at https://flutter-simple-web-app.now.sh
 
 
 ## References
