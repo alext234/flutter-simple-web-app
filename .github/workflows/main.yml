@@ -1,4 +1,4 @@
-name: Test and Build web
+name: Test, build web, deploy
 
 on:
   push:
@@ -6,8 +6,7 @@ on:
       - master
 
 jobs:
-  build_deploy:
-
+  test_build_web:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,3 +24,18 @@ jobs:
         with:
           name: web-build
           path: build/web
+
+  deploy_web_now:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: web-build
+          path: build/web
+
+      - uses: actions/zeit-now@master
+        env:
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+        with:
+          args: --prod
