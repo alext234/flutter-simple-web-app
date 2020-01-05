@@ -30,6 +30,7 @@ jobs:
     needs: test_build_web
 
     steps:
+      - uses: actions/checkout@v1
       - uses: actions/download-artifact@v1
         with:
           name: web-build
