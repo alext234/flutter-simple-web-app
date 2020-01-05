@@ -39,3 +39,4 @@ jobs:
         with:
           now-args: '--prod'
           zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
