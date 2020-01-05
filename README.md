@@ -5,8 +5,7 @@ This repo is a very simple web app with Flutter following the basic tutorial.
 A working production URL is deployed at https://flutter-simple-web-app.now.sh
 
 
-TODO: pipeline with github actions 
-TODO: debug instructions
+TODO: debug instructions with flutter
 
 ## Some basic commands
 
@@ -86,6 +85,16 @@ The output will look like this
 - https://flutter-simple-web-app.now.sh
 - https://flutter-simple-web-app.<user-id>.now.sh [in clipboard]
 ```
+
+
+### Github Actions
+[.github/workflows/main.yml](.github/workflows/main.yml) contains the Github Actions workflow for running Flutter test and build and deploy with zeit `now` cli. 
+
+This is a sample screenshot of a successful workflow:
+
+![](https://raw.githubusercontent.com/alext234/figs/master/flutter-simple-web-app/github-actions.png)
+
+Build artifacts used for deployment can be downloaded from the top right corner `Artifacts` drop-down.
 
 
 ## References
