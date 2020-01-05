@@ -14,7 +14,16 @@ TODO: debug instructions
 
 * `flutter` setup was mainly based on this page https://flutter.dev/docs/get-started/install/macos
 
+* Flutter `beta` channel is used
+
+```
+ flutter channel beta
+ flutter upgrade
+ flutter config --enable-web
+```
+
 * Also Chrome browser should be installed
+
 
 ### Run with Chrome browser
 
