@@ -23,12 +23,38 @@ TODO: debug instructions with flutter
 
 * Also Chrome browser should be installed
 
+* DevTools (https://flutter.dev/docs/development/tools/devtools/cli)  can also be installed for performance and debugging purpose
+
+```
+flutter pub global activate devtools
+```
+
+To run DevTools from CLI:
+
+```
+flutter pub global run devtools 
+```
+
+And open DevTools UI in the browser at http://127.0.0.1:9100
 
 ### Run with Chrome browser
+
+This command will attempt to open a new Chrome browser and run the app in Debug mode.
 
 ```
 flutter run -d chrome
 ```
+
+You should see a URL for debugging:
+
+```
+🔥  To hot restart changes while running, press "r". To hot restart (and refresh
+the browser), press "R".
+For a more detailed help message, press "h". To quit, press "q".
+Debug service listening on ws://127.0.0.1:54708/bcg-mZh5AzI=
+```
+
+If you have DevTools running, drop the above URL into DevTools to connect the debugger.
 
 ### Run tests
 
