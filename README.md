@@ -4,9 +4,6 @@ This repo is a very simple web app with Flutter following the basic tutorial.
 
 A working production URL is deployed at https://flutter-simple-web-app.now.sh
 
-
-TODO: debug instructions with flutter
-
 ## Some basic commands
 
 ### Setup
@@ -68,6 +65,8 @@ flutter test
 ```
 flutter build web
 ```
+
+(To build a version for performance profiling, use `flutter build web --profile`)
 
 The build outputs will be under `build/web` directory. This can be served with a simple HTTP server, such as one from Python
 
