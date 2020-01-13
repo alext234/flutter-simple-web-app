@@ -36,6 +36,7 @@ And open DevTools UI in the browser at http://127.0.0.1:9100
 
 ### Run with Chrome browser
 
+#### If `chrome` is detected properly by flutter
 This command will attempt to open a new Chrome browser and run the app in Debug mode.
 
 ```
@@ -52,6 +53,24 @@ Debug service listening on ws://127.0.0.1:54708/bcg-mZh5AzI=
 ```
 
 If you have DevTools running, drop the above URL into DevTools to connect the debugger.
+
+#### If `chrome` is not detected by flutter
+
+Run with this command 
+
+```
+flutter run --web-port <port-number>
+```
+
+The output will look like this
+
+```
+...
+lib/main.dart is being served at http://localhost:<port-number>/
+...
+```
+
+Open chrome browser and visit the URL to open the app.
 
 ### Run tests
 
