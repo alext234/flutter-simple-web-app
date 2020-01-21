@@ -62,6 +62,8 @@ Run with this command
 flutter run --web-port <port-number>
 ```
 
+(Specify option --web-hostname=0.0.0.0 to make the web server to listen on all interfaces so that it is accessible outside localhost)
+
 The output will look like this
 
 ```
