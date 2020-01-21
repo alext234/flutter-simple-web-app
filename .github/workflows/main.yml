@@ -37,7 +37,16 @@ jobs:
           path: build/web
 
       - uses: amondnet/now-deployment@v1
+        if: github.ref != 'refs/heads/master'
+        name: deploy-non-prod
+        with:
+          now-args: ''
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: amondnet/now-deployment@v1
         if: github.ref == 'refs/heads/master'
+        name: deploy-prod
         with:
           now-args: '--prod'
           zeit-token: ${{ secrets.ZEIT_TOKEN }}
