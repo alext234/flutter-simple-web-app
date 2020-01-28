@@ -18,7 +18,7 @@ jobs:
         with:
           channel: 'beta'
       - run: flutter config --enable-web
-      - run: flutter test
+      - run: flutter test --platform chrome
       - run: flutter build web
       - uses: actions/upload-artifact@v1
         with:

@@ -77,7 +77,7 @@ Open chrome browser and visit the URL to open the app.
 ### Run tests
 
 ```
-flutter test
+flutter test --platform chrome
 ```
 
 
