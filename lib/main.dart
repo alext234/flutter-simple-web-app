@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
+import 'dart:convert';
 import 'dart:html' as html;
 
 void main() => runApp(SimpleApp());
@@ -48,7 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _handleFileSelectResult(Object result) {
     setState(() {
-      // _bytesBase64 = Base64Decoder().convert(result.toString().split(",").last);
+      final resultArr = result.toString().split(",");
+      final contentType = resultArr.first; // e.g. data:image/png;base64
+      final base64Content = resultArr.last; // base64 string
+      final bytesContent = Base64Decoder().convert(base64Content);
+    
+    // TODO  display the size and len
       
     });
   }
