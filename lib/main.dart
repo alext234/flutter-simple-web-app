@@ -65,9 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget fileCard() {
-    if (_contentLength==0) {
-      return Container(); // a dummy widget
-    }
+    // TODO: card does not work on safari?
+    // if (_contentLength==0) {
+    //   return Container(); // a dummy widget
+    // }
     return  Card(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
