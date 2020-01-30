@@ -29,6 +29,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _contentType = "n/a";
+  String _filename = "";
+  int _contentLength = 0;
+
   handleFileSelect() async {
     html.InputElement uploadInput = html.FileUploadInputElement();
     uploadInput.multiple = false;
@@ -38,12 +42,14 @@ class _MyHomePageState extends State<MyHomePage> {
     uploadInput.onChange.listen((e) {
       final files = uploadInput.files;
       final file = files[0];
+      _filename = file.name;
+      _contentLength = file.size;
       final reader = new html.FileReader();
 
       reader.onLoadEnd.listen((e) {
         _handleFileSelectResult(reader.result);
       });
-      reader.readAsDataUrl(file);
+      reader.readAsDataUrl(file); // TODO only do this for certain size if not show error on card?
     });
   }
 
@@ -53,10 +59,35 @@ class _MyHomePageState extends State<MyHomePage> {
       final contentType = resultArr.first; // e.g. data:image/png;base64
       final base64Content = resultArr.last; // base64 string
       final bytesContent = Base64Decoder().convert(base64Content);
-    
-    // TODO  display the size and len
-      
+
+      _contentType = contentType;
     });
+  }
+
+  Widget fileCard() {
+    if (_contentLength==0) {
+      return Container(); // a dummy widget
+    }
+    return  Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      new ListTile(
+                        title: new Text("File : $_filename"),
+                        subtitle:
+                        new Text("File type: $_contentType; Size : $_contentLength"),
+                      ),
+                      ButtonBar(
+                        children: <Widget>[
+                          FlatButton(
+                            child: new Text("Upload"),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
   }
   @override
   Widget build(BuildContext context) {
@@ -79,15 +110,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   handleFileSelect();
                 },
               ),
-              RaisedButton(
-                color: Colors.blueGrey,
-                elevation: 8.0,
-                textColor: Colors.white,
-                onPressed: () {
-                  // TODO handle server upload
-                },
-                child: Text('Upload'),
-              ),
+              SizedBox(
+                width: 400.0,
+                height: 150.0,
+                child: fileCard(),
+              ),              
             ])));
   }
 }
