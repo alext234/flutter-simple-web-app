@@ -65,11 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget fileCard() {
-    // TODO: card does not work on safari?
-    // if (_contentLength==0) {
-    //   return Container(); // a dummy widget
-    // }
-    return  Card(
+    Card card = Card(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -89,6 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 );
+              
+    return  Visibility(
+      child: card,
+      visible: _contentLength>0,
+    );
   }
   @override
   Widget build(BuildContext context) {
