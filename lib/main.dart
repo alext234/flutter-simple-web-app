@@ -65,29 +65,59 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget fileCard() {
-    Card card = Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      new ListTile(
-                        title: new Text("File : $_filename"),
-                        subtitle:
-                        new Text("File type: $_contentType; Size : $_contentLength"),
-                      ),
-                      ButtonBar(
-                        children: <Widget>[
-                          FlatButton(
-                            child: new Text("Upload"),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              
+    // Card card = Card(
+    //               child: Column(
+    //                 mainAxisSize: MainAxisSize.min,
+    //                 children: <Widget>[
+    //                   new ListTile(
+    //                     title: new Text("File : $_filename"),
+    //                     subtitle:
+    //                     new Text("File type: $_contentType; Size : $_contentLength"),
+    //                   ),
+    //                   ButtonBar(
+    //                     children: <Widget>[
+    //                       FlatButton(
+    //                         child: new Text("Upload"),
+    //                         onPressed: () {},
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ],
+    //               ),
+    //             );
+    var texts = Column(
+      children: <Widget>[
+        // some spacing
+        SizedBox(height: 10),
+
+        Text(
+          "File : $_filename",
+          style: TextStyle(
+            height: 1.5,
+          ),
+        ),
+        Text(
+          "File type: $_contentType; Size : $_contentLength",
+          style: TextStyle(
+            height: 1.5,
+          ),
+        ),
+        MaterialButton(
+          color: Colors.amber,
+          elevation: 1,
+          highlightElevation: 1,
+          shape: RoundedRectangleBorder(),
+          textColor: Colors.white,
+          child: Text('Upload'),
+          onPressed: () {
+            handleFileSelect();
+          },
+        ),
+      ],
+    );
+    
     return  Visibility(
-      child: card,
+      child: texts,
       visible: _contentLength>0,
     );
   }
