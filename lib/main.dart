@@ -33,24 +33,34 @@ class _MyHomePageState extends State<MyHomePage> {
   String _filename = "";
   int _contentLength = 0;
 
-  handleFileSelect() async {
-    html.InputElement uploadInput = html.FileUploadInputElement();
-    uploadInput.multiple = false;
-    uploadInput.draggable = true;
-    uploadInput.click();
 
-    uploadInput.onChange.listen((e) {
+  handleFileSelect() async {
+    html.InputElement uploadInput = html.FileUploadInputElement()..multiple=false..draggable=true;    
+    uploadInput.click();
+    
+    // onChange does not work on mobile safari hence using this fix
+    // https://stackoverflow.com/questions/57264032/uploading-images-on-flutter-web-using-a-pub-other-than-the-image-picker
+    uploadInput.addEventListener('change', (e) async {
       final files = uploadInput.files;
       final file = files[0];
-      _filename = file.name;
-      _contentLength = file.size;
       final reader = new html.FileReader();
+      this.setState((){
+        _filename = file.name;
+        _contentLength = file.size;
+      });
 
-      reader.onLoadEnd.listen((e) {
+
+      reader.onError.listen((error){}); // TODO
+       reader.onLoadEnd.listen((e) {
         _handleFileSelectResult(reader.result);
       });
-      reader.readAsDataUrl(file); // TODO only do this for certain size if not show error on card?
+      reader.readAsDataUrl(file);
+
     });
+
+    //* need to append on mobile safari
+    html.document.body.append(uploadInput);
+
   }
 
   void _handleFileSelectResult(Object result) {
@@ -60,50 +70,41 @@ class _MyHomePageState extends State<MyHomePage> {
       final base64Content = resultArr.last; // base64 string
       final bytesContent = Base64Decoder().convert(base64Content);
 
-      _contentType = contentType;
+      this.setState((){
+        _contentType = contentType;
+      });
+
     });
   }
 
   Widget fileCard() {
-    var texts = Column(
-      children: <Widget>[
-        // some spacing
-        SizedBox(height: 10),
-
-        Text(
-          "File : $_filename",
-          style: TextStyle(
-            height: 1.5,
-          ),
-        ),
-        Text(
-          "File type: $_contentType; Size : $_contentLength",
-          style: TextStyle(
-            height: 1.5,
-          ),
-        ),
-        MaterialButton(
-          color: Colors.amber,
-          elevation: 1,
-          highlightElevation: 1,
-          shape: RoundedRectangleBorder(),
-          textColor: Colors.white,
-          child: Text('Upload'),
-          onPressed: () {
-            handleFileSelect();
-          },
-        ),
-      ],
-    );
-    
+    Card card = Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      new ListTile(
+                        title: new Text("File : $_filename"),
+                        subtitle:
+                        new Text("File type: $_contentType; Size : $_contentLength"),
+                      ),
+                      ButtonBar(
+                        children: <Widget>[
+                          FlatButton(
+                            child: new Text("Upload"),
+                            onPressed: () { }, // TODO handle the upload button
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              
     return  Visibility(
-      child: texts,
-      maintainSize: true,
-      maintainState: true,
-      maintainAnimation: true,
+      child: card,
       visible: _contentLength>0,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
