@@ -65,26 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget fileCard() {
-    // Card card = Card(
-    //               child: Column(
-    //                 mainAxisSize: MainAxisSize.min,
-    //                 children: <Widget>[
-    //                   new ListTile(
-    //                     title: new Text("File : $_filename"),
-    //                     subtitle:
-    //                     new Text("File type: $_contentType; Size : $_contentLength"),
-    //                   ),
-    //                   ButtonBar(
-    //                     children: <Widget>[
-    //                       FlatButton(
-    //                         child: new Text("Upload"),
-    //                         onPressed: () {},
-    //                       ),
-    //                     ],
-    //                   ),
-    //                 ],
-    //               ),
-    //             );
     var texts = Column(
       children: <Widget>[
         // some spacing
@@ -118,6 +98,9 @@ class _MyHomePageState extends State<MyHomePage> {
     
     return  Visibility(
       child: texts,
+      maintainSize: true,
+      maintainState: true,
+      maintainAnimation: true,
       visible: _contentLength>0,
     );
   }
